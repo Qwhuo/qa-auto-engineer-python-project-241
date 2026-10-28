@@ -25,6 +25,10 @@ cd qa-auto-engineer-python-project-241
 <!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
 https://asciinema.org/a/n2OXjaCb8VIrmO9j
 
+https://asciinema.org/a/YMwpOiUW95zhxrcH
+
+https://asciinema.org/a/UIaX2EFDmkzcz1Kg
+
 ---
 
 <details>
