@@ -1,9 +1,9 @@
 
 
 def process_bool(val):
-    if val == True:
+    if val is True:
         return "true"
-    elif val == False:
+    elif val is False:
         return "false"
     else:
         return val
