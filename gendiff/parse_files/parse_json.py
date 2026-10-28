@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 
-def parse_json(path):
+def parse_json(path) -> dict:
     p = Path(path)
     if not p.is_absolute():
         p = p.cwd() / p
