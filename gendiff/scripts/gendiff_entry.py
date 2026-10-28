@@ -12,7 +12,7 @@ def main():
     args = parser.parse_args()
     try:
         result = generate_diff(args.first_file, args.second_file, args.format)
-        return result
+        print(result)
     except Exception as e:
         print(str(e))
         sys.exit(1)
