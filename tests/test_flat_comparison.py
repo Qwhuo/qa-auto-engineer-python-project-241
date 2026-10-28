@@ -1,8 +1,9 @@
 import pytest
 from pathlib import Path
 
-from gendiff.stylish_diff import form_stylish
-from gendiff.plain_diff import form_plain
+from gendiff.formatters.stylish_diff import form_stylish
+from gendiff.formatters.plain_diff import form_plain
+from gendiff.formatters.json_diff import form_json
 from gendiff.parse_files.parse_json import parse_json
 from gendiff.parse_files.parse_yaml import parse_yaml
 from gendiff.gather_difference import form_difference_dict
@@ -18,6 +19,13 @@ def expected():
 @pytest.fixture
 def expected_plain():
     p = Path(__file__).parent / "plain_expected.txt"
+    with open(p, "r") as f:
+        expected = f.read()
+    return expected
+
+@pytest.fixture
+def expected_json():
+    p = Path(__file__).parent / "json_expected.json"
     with open(p, "r") as f:
         expected = f.read()
     return expected
@@ -101,3 +109,12 @@ def test_file_to_dict_convert():
     p_yml = Path(__file__).parent / "d1.yml"
     assert to_dict(p_json) == expected
     assert to_dict(p_yml) == expected
+
+
+def test_json_to_json_comparison(expected_json):
+    p1 = Path(__file__).parent / "d1.json"
+    p2 = Path(__file__).parent / "d2.yml"
+    d1 = parse_yaml(p1)
+    d2 = parse_yaml(p2)
+    diff = form_difference_dict(d1, d2)
+    assert expected_json == form_json(diff)
